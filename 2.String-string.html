@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * @param {string} name
+       */
+      const convertToSlug = (name) => {
+        const output = name.toLowerCase().split(" ").join("-");
+
+        const slug = output.length > 15 ? output.substring(0, 15) : output;
+        return slug;
+      };
+
+      // 测试用例
+      console.log(convertToSlug("to do list")); // "to-do-list"
+      console.log(convertToSlug("My SeCond BlOg")); // "my-second-blog"
+      console.log(convertToSlug("Grade inquiry of CET-4&6")); // "grade-inquiry-o"
+
+      /*
+      去掉字符串str中，连续重复的地方
+      */
+      function removeRepetition(str) {
+        // do something
+        const arr = str.split("");
+        let result = [];
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] !== arr[i + 1]) {
+            result.push(arr[i]);
+          }
+        }
+        return result.join("");
+      }
+
+      // 测试用例
+      console.log(removeRepetition("aaa")); // ->a
+      console.log(removeRepetition("abbba")); // ->aba
+      console.log(removeRepetition("aabbaabb")); // ->abab
+      console.log(removeRepetition("")); // ->
+      console.log(removeRepetition("abc")); // ->abc
+
+      /**
+       * @@param {string} str
+       * @return {Boolean} 如果是返回 true，如果不是回文字符串 返回 false
+       */
+      function isPalindromicString(str) {
+        // do something
+        const originStr = str.toLowerCase();
+        const reverseStr = originStr.split("").reverse().join("");
+        return originStr === reverseStr;
+      }
+
+      // 测试用例
+      console.log(isPalindromicString("aaa")); // ->true
+      console.log(isPalindromicString("madam")); // ->true
+      console.log(isPalindromicString("hello")); // ->false
+    </script>
+  </body>
+</html>

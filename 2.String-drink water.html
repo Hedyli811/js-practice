@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="" id="date" placeholder="input a date" />
+    <button id="search">search</button>
+    <p id="result"></p>
+    <script>
+      const data = [
+        "monday - 500ml",
+        "mONday - 330",
+        "monday - 150ml",
+        "Tuesday - 100ml",
+        "Tuesday - 330ml",
+        "weDnesDay - 230",
+        "TursDAy - 330ml",
+        "Friday - 500",
+        "Saturday - 100ml",
+        "sunday - 250",
+        "sunday - 100ml",
+      ];
+      const arr = [];
+      data.forEach((item) => {
+        const [day, volumn] = item.split("-");
+        const capDay = day.charAt(0).toUpperCase() + day.slice(1).toLowerCase();
+        const volumnUnit = volumn.endsWith("ml") ? volumn : `${volumn}ml`;
+        const formatString = `${capDay} : ${volumnUnit}`;
+        arr.push(formatString);
+      });
+      console.log(arr[1]);
+
+      //next step
+
+      const result = document.getElementById("result");
+
+      function filter() {
+        //filter the day by user input
+        const date = document.getElementById("date").value.toLowerCase();
+        const newArr = arr.filter((item) => {
+          const itemDate = item.split(":")[0].toLowerCase();
+          return itemDate.includes(date);
+        });
+        //calculate the water drank that day
+        let total = 0;
+        newArr.forEach((item) => {
+          const water = parseInt(item.split(":")[1]);
+          total += water;
+        });
+
+        result.innerHTML =
+          total >= 500
+            ? `${newArr.join(
+                "<br>"
+              )} <br> Total water intake:${total}ml You have met the daily water intake goal!`
+            : `${newArr.join(
+                "<br>"
+              )} <br> Total water intake:${total}ml You have not met the daily water intake goal.`;
+      }
+
+      const search = document.getElementById("search");
+      search.addEventListener("click", filter);
+    </script>
+  </body>
+</html>

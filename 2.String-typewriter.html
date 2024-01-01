@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label>input your text:</label><input type="text" id="text" />
+    <button onclick="generateTypeEffect()">typing</button>
+    <h2 id="showText"></h2>
+    <script>
+      function generateTypeEffect() {
+        //这里实现打字机效果
+        //将内容显示在h2中
+        const input = document.getElementById("text").value;
+        const output = document.getElementById("showText");
+
+        let i = 0;
+        const intervalId = setInterval(() => {
+          if (i < input.length) {
+            output.innerHTML = input.substring(0, i);
+            i++;
+          } else {
+            clearInterval(intervalId);
+          }
+        }, 100);
+      }
+    </script>
+  </body>
+</html>
